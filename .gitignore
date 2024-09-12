@@ -1,0 +1,10 @@
+.idea/.gitignore
+.idea/deployment.xml
+.idea/ginblog.iml
+.idea/git_toolbox_blame.xml
+.idea/git_toolbox_prj.xml
+.idea/modules.xml
+.idea/sshConfigs.xml
+.idea/vcs.xml
+.idea/webServers.xml
+go.sum
