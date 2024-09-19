@@ -2,10 +2,14 @@ package models
 
 import (
 	"fmt"
-	"github.com/bianpeijiang/ginblog/pkg/setting"
-	"github.com/jinzhu/gorm"
 	"log"
 	"time"
+
+	"github.com/bianpeijiang/ginblog/pkg/setting"
+	"github.com/jinzhu/gorm"
+
+	//_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var db *gorm.DB
@@ -22,9 +26,9 @@ func init() {
 		dbType, dbName, user, password, host, tablePrefix string
 	)
 
-	sec, err := setting.Cfg.GetSection("idatabase")
+	sec, err := setting.Cfg.GetSection("database")
 	if err != nil {
-		log.Fatal(2, "Fail to geet section 'database':%v", err)
+		log.Fatal(2, "Fail to get section 'database': %v ", err)
 	}
 
 	dbType = sec.Key("TYPE").String()
@@ -34,11 +38,13 @@ func init() {
 	host = sec.Key("HOST").String()
 	tablePrefix = sec.Key("TABLE_PREFIX").String()
 
-	db, err = gorm.Open(dbType, fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
+	args := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
 		user,
 		password,
 		host,
-		dbName))
+		dbName)
+
+	db, err = gorm.Open(dbType, args)
 	if err != nil {
 		log.Println(err)
 	}
