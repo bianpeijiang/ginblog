@@ -8,8 +8,8 @@ import (
 	"github.com/bianpeijiang/ginblog/pkg/setting"
 	"github.com/jinzhu/gorm"
 
-	//_ "github.com/jinzhu/gorm/dialects/mysql"
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+	//_ "github.com/go-sql-driver/mysql"
 )
 
 var db *gorm.DB
@@ -49,11 +49,13 @@ func init() {
 		log.Println(err)
 	}
 
+	//设置默认表名加前缀
 	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
 		return tablePrefix + defaultTableName
 	}
-
+	//使用单数表名
 	db.SingularTable(true)
+	//设置log模式，true为详细日志，false无日志 default将只输出错误日志
 	db.LogMode(true)
 	// SetMaxIdleCon设置空闲连接池中的最大连接数。
 	db.DB().SetMaxIdleConns(10)
@@ -64,5 +66,10 @@ func init() {
 }
 
 func CloseDB() {
-	defer db.Close()
+	defer func(db *gorm.DB) {
+		err := db.Close()
+		if err != nil {
+			log.Println(err)
+		}
+	}(db)
 }

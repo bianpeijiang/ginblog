@@ -27,7 +27,7 @@ CREATE TABLE `blog_article` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章管理';
 
---认证表
+-- 认证表
 CREATE TABLE `blog_auth` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `username` varchar(50) DEFAULT '' COMMENT '账号',
