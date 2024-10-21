@@ -103,7 +103,7 @@ func AddArticle(c *gin.Context) {
 			data["title"] = title
 			data["desc"] = desc
 			data["content"] = content
-			data["create_by"] = createBy
+			data["created_by"] = createBy
 			data["state"] = state
 
 			models.AddArticle(data)
@@ -165,8 +165,9 @@ func EditArticle(c *gin.Context) {
 				if content != "" {
 					data["content"] = content
 				}
+				data["state"] = state
 				data["modified_by"] = modifiedBy
-
+				log.Println(data)
 				models.EditArticle(id, data)
 				code = e.SUCCESS
 			}
