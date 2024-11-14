@@ -1,8 +1,8 @@
 package jwt
 
 import (
-	"ginblog/pkg/e"
-	"ginblog/pkg/util"
+	"github.com/bianpeijiang/ginblog/pkg/e"
+	"github.com/bianpeijiang/ginblog/pkg/util"
 	"net/http"
 	"time"
 

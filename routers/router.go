@@ -1,9 +1,9 @@
 package routers
 
 import (
-	"ginblog/middleware/jwt"
-	"ginblog/routers/api"
-	v1 "ginblog/routers/api/v1"
+	"github.com/bianpeijiang/ginblog/middleware/jwt"
+	"github.com/bianpeijiang/ginblog/routers/api"
+	v1 "github.com/bianpeijiang/ginblog/routers/api/v1"
 
 	"github.com/bianpeijiang/ginblog/pkg/setting"
 

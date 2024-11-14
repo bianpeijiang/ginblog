@@ -50,4 +50,13 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/bianpeijiang/ginblog v0.0.0 => /Users/bianpeijiang/Documents/project/go/src/ginblog
+replace (
+	github.com/bianpeijiang/ginblog v0.0.0 				=> /Users/bianpeijiang/Documents/project/go/src/ginblog
+	github.com/bianpeijiang/ginblog/pkg/logging v0.0.0 	=> /Users/bianpeijiang/Documents/project/go/src/ginblog/pkg/logging
+	github.com/bianpeijiang/ginblog/pkg/e v0.0.0 		=> /Users/bianpeijiang/Documents/project/go/src/ginblog/pkg/e
+	github.com/bianpeijiang/ginblog/pkg/util v0.0.0 	=> /Users/bianpeijiang/Documents/project/go/src/ginblog/pkg/util
+	github.com/bianpeijiang/ginblog/pkg/setting v0.0.0 	=> /Users/bianpeijiang/Documents/project/go/src/ginblog/pkg/setting
+	github.com/bianpeijiang/ginblog/models v0.0.0 		=> /Users/bianpeijiang/Documents/project/go/src/ginblog/models
+	github.com/bianpeijiang/ginblog/middleware/jwt v0.0.0 => /Users/bianpeijiang/Documents/project/go/src/ginblog/middleware/jwt
+	github.com/bianpeijiang/ginblog/routers/api v0.0.0 		=> /Users/bianpeijiang/Documents/project/go/src/ginblog/routers/api
+)
