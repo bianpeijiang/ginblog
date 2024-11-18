@@ -1,11 +1,10 @@
-module ginblog
+module github.com/bianpeijiang/ginblog
 
 go 1.22.0
 
 toolchain go1.23.0
 
 require (
-	github.com/bianpeijiang/ginblog v0.0.0
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-ini/ini v1.67.0
 	github.com/unknwon/com v1.0.1
