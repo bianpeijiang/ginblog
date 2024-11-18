@@ -4,9 +4,12 @@ import (
 	"github.com/bianpeijiang/ginblog/middleware/jwt"
 	"github.com/bianpeijiang/ginblog/routers/api"
 	v1 "github.com/bianpeijiang/ginblog/routers/api/v1"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 
 	"github.com/bianpeijiang/ginblog/pkg/setting"
 
+	_ "github.com/bianpeijiang/ginblog/docs"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,6 +23,8 @@ func InitRouter() *gin.Engine {
 	gin.SetMode(setting.RunMode)
 
 	r.GET("/auth", api.GetAuth)
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	apiv1 := r.Group("/api/v1")
 	apiv1.Use(jwt.JWT())

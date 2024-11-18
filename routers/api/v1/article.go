@@ -1,6 +1,8 @@
 package v1
 
 import (
+	"fmt"
+	"ginblog/pkg/logging"
 	"github.com/astaxie/beego/validation"
 	"github.com/bianpeijiang/ginblog/models"
 	"github.com/bianpeijiang/ginblog/pkg/e"
@@ -8,7 +10,6 @@ import (
 	"github.com/bianpeijiang/ginblog/pkg/util"
 	"github.com/gin-gonic/gin"
 	"github.com/unknwon/com"
-	"log"
 	"net/http"
 )
 
@@ -29,7 +30,7 @@ func GetArticle(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Printf("err.key:%s, err.message: %s", err.Key, err.Message)
+			logging.Info(fmt.Sprintf("err.key:%s, err.message: %s", err.Key, err.Message))
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
@@ -68,7 +69,7 @@ func GetArticles(c *gin.Context) {
 		data["total"] = models.GetArticleTotal(maps)
 	} else {
 		for _, err := range valid.Errors {
-			log.Printf("err.key: %s, err.message: %s", err.Key, err.Message)
+			logging.Info(fmt.Sprintf("err.key: %s, err.message: %s", err.Key, err.Message))
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
@@ -113,7 +114,7 @@ func AddArticle(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Printf("err.key: %s, err.message: %s", err.Key, err.Message)
+			logging.Error(fmt.Sprintf("err.key: %s, err.message: %s", err.Key, err.Message))
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
@@ -167,7 +168,6 @@ func EditArticle(c *gin.Context) {
 				}
 				data["state"] = state
 				data["modified_by"] = modifiedBy
-				log.Println(data)
 				models.EditArticle(id, data)
 				code = e.SUCCESS
 			}
@@ -176,7 +176,7 @@ func EditArticle(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Printf("err.key: %s, err.message: %s", err.Key, err.Message)
+			logging.Error(fmt.Sprintf("err.key: %s, err.message: %s", err.Key, err.Message))
 		}
 	}
 
@@ -204,7 +204,7 @@ func DeleteArticle(c *gin.Context) {
 		}
 	} else {
 		for _, err := range valid.Errors {
-			log.Printf("err.key: %s, err.message: %s", err.Key, err.Message)
+			logging.Error(fmt.Sprintf("err.key: %s, err.message: %s", err.Key, err.Message))
 		}
 	}
 	c.JSON(http.StatusOK, gin.H{
