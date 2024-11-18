@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"ginblog/pkg/setting"
-	"ginblog/routers"
+	"github.com/bianpeijiang/ginblog/pkg/setting"
+	"github.com/bianpeijiang/ginblog/routers"
 	"log"
 	"net/http"
 	"os"
